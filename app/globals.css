@@ -39,7 +39,7 @@ html, body {
   aspect-ratio: 16/9;
   width: 100%;
   background-repeat: no-repeat;
-  background-position: center bottom;
+  background-position: center;
   background-size: cover;       /* ← cover everywhere */
   background-attachment: scroll; /* ← scroll everywhere by default */
 }
@@ -47,7 +47,8 @@ html, body {
 @media (min-width: 1024px) {
   .spacer {
     background-attachment: fixed; /* only fixed on md+ */
-    background-size: auto;        /* your existing desktop sizing */
+ 
+    
   }
 }
 
@@ -60,7 +61,7 @@ html, body {
   }
 }
 .layer1 {
-  background-image: url('../components/svg/nice-blue.svg');
+  background-image: url('../public/uploads/herobg.png');
 }
 .layer2l {
   background-image: url('../components/svg/blobxd.svg');
