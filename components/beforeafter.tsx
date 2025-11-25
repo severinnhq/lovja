@@ -16,7 +16,7 @@ export const Slider = () => {
 
   return (
     <div className="w-fit m-auto text-center select-none py-6">
-      {/* White text above the slider */}
+      {/* White text above t he slider */}
       <p className="text-white text-2xl font-bold mb-4">Mi lehetséges?</p>
 
       <div
