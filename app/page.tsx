@@ -68,11 +68,7 @@ export default function DigitalMarketingQuiz() {
   const [errors, setErrors] = useState<{[key: number]: string}>({});
 
   const topSectionRef = useRef<HTMLDivElement>(null);
-  const scrollToTop = () => {
-    if (topSectionRef.current) {
-      topSectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+ 
 
   const quizSteps: QuizStep[] = [
     {
