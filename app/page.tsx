@@ -8,12 +8,13 @@ import LandingHeader from '@/components/hu/landingheader';
 import WhyLovjaSection from "@/components/hu/WhyLovjaSection";
 import FAQ from "@/components/hu/faq";
 import Footer from "@/components/hu/Footer";
+import ReviewsGallery from "@/components/hu/ReviewsGallery";
 
 interface FormData {
   marketingType: string[];
   averageRevenue: string;
   monthlySpend: string;
-  treatments: string;
+  treatments: string; // pl. orrplasztika, hasplasztika, implantátum
   website: string;
   location: string;
   investmentIntent: string;
@@ -553,6 +554,7 @@ export default function DigitalMarketingQuiz() {
             variants={fadeUp}
           >
             <WhyLovjaSection />
+            <ReviewsGallery />
           </motion.div>
         </div>
         <div className="w-[250%] md:w-[175%] xl:w-full wave hidden lg:block">

@@ -8,6 +8,7 @@ import LandingHeader from '@/components/en/landingheader';
 import WhyLovjaSection from "@/components/en/WhyLovjaSection";
 import FAQ from "@/components/en/faq";
 import Footer from "@/components/en/Footer";
+import ReviewsGallery from "@/components/en/ReviewsGallery";
 
 interface FormData {
   marketingType: string[];
@@ -553,6 +554,8 @@ export default function DigitalMarketingQuiz() {
             variants={fadeUp}
           >
             <WhyLovjaSection />
+            <ReviewsGallery />
+            <FAQ />
           </motion.div>
         </div>
         <div className="w-[250%] md:w-[175%] xl:w-full wave hidden lg:block">
