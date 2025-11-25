@@ -5,10 +5,7 @@ import { motion } from 'framer-motion';
 import { easeOut } from 'framer-motion/dom';
 import Image from 'next/image';
 import LandingHeader from '@/components/landingheader';
-import Bonuses from '@/components/bonuses';
-import Why from "@/components/why";
-import Cta1Section from "@/components/cta1section";
-import Cta2Section from "@/components/cta2section";
+import WhyLovjaSection from "@/components/WhyLovjaSection";
 import FAQ from "@/components/faq";
 import Footer from "@/components/Footer";
 
@@ -550,7 +547,7 @@ export default function DigitalMarketingQuiz() {
           <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill"></path>
         </svg>
       </div>
-         <Bonuses />
+       
       <div className="flex flex-col items-center spacer bg-white layer3">
         <div className="w-full px-8 sm:px-16 md:px-32 lg:px-16 bg-[#000816] pb-8">
           <motion.div
@@ -559,7 +556,7 @@ export default function DigitalMarketingQuiz() {
             viewport={viewportOptions}
             variants={fadeUp}
           >
-            <Why />
+            <WhyLovjaSection />
           </motion.div>
         </div>
         <div className="w-[250%] md:w-[175%] xl:w-full wave hidden lg:block">
@@ -574,7 +571,7 @@ export default function DigitalMarketingQuiz() {
             viewport={viewportOptions}
             variants={fadeUp}
           >
-            <Cta1Section scrollToTop={scrollToTop} />
+           
           </motion.div>
         </div>
         <div className="triangle">
@@ -589,7 +586,7 @@ export default function DigitalMarketingQuiz() {
             viewport={viewportOptions}
             variants={fadeUp}
           >
-            <Cta2Section scrollToTop={scrollToTop} />
+           
           </motion.div>
         </div>
         <div className="triangle">
