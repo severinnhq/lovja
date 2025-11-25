@@ -40,29 +40,30 @@ html, body {
   width: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;       /* ← cover everywhere */
-  background-attachment: scroll; /* ← scroll everywhere by default */
+  background-size: cover;       /* cover everywhere */
+  background-attachment: scroll; /* scroll works on mobile */
 }
 
-@media (min-width: 1024px) {
-  .spacer {
-    background-attachment: fixed; /* only fixed on md+ */
- 
-    
-  }
-}
-
+/* Hero background layer */
 .telo-layer1 {
-  background-image: url('../public/uploads/herobg.webp');
+  background-image: url('/uploads/herobg.webp'); /* Correct path for Next.js */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: scroll; /* scroll works on mobile */
 }
-@media (min-width: 1024px) {
-  .telo-layer1 {
-    background-image: none;
-  }
-}
+
+/* Optional fallback for older browsers */
 .layer1 {
-  background-image: url('../public/uploads/herobg.webp');
+  background-image: url('/uploads/herobg.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: scroll;
 }
+
+/* Remove any media queries that override the background-image */
+
 .layer2l {
   background-image: url('../components/svg/blobxd.svg');
   width: 100%;

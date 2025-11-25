@@ -463,9 +463,7 @@ export default function DigitalMarketingQuiz() {
 
   return (
     <main className="spacer layer1
-    bg-no-repeat bg-center
-    bg-contain bg-scroll
-    md:bg-auto md:bg-fixed">
+    ">
       <LandingHeader />
 <div
   ref={topSectionRef}
