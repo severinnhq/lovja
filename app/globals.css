@@ -53,7 +53,7 @@ html, body {
 }
 
 .telo-layer1 {
-  background-image: url('../components/svg/nice-blue.svg');
+  background-image: url('../public/uploads/herobg.webp');
 }
 @media (min-width: 1024px) {
   .telo-layer1 {
@@ -61,7 +61,7 @@ html, body {
   }
 }
 .layer1 {
-  background-image: url('../public/uploads/herobg.png');
+  background-image: url('../public/uploads/herobg.webp');
 }
 .layer2l {
   background-image: url('../components/svg/blobxd.svg');
