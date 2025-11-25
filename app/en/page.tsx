@@ -4,10 +4,10 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { easeOut } from 'framer-motion/dom';
 import Image from 'next/image';
-import LandingHeader from '@/components/hu/landingheader';
-import WhyLovjaSection from "@/components/hu/WhyLovjaSection";
-import FAQ from "@/components/hu/faq";
-import Footer from "@/components/hu/Footer";
+import LandingHeader from '@/components/en/landingheader';
+import WhyLovjaSection from "@/components/en/WhyLovjaSection";
+import FAQ from "@/components/en/faq";
+import Footer from "@/components/en/Footer";
 
 interface FormData {
   marketingType: string[];
@@ -213,7 +213,7 @@ export default function DigitalMarketingQuiz() {
       onClick={handleNext}
       className="bg-yellow-400 text-black text-lg sm:text-xl font-bold w-full py-2 sm:py-3 rounded-xl hover:bg-yellow-500 transition-colors cursor-pointer btn-shadow"
     >
-      TOVÁBB
+      NEXT
     </button>
   );
 

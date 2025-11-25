@@ -1,8 +1,8 @@
 // app/layout.tsx
-import "./globals.css";
+import "../globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import PixelClient from "@/components/hu/PixelClient";
+import PixelClient from "@/components/en/PixelClient";
 import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
