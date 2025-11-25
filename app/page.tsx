@@ -1,226 +1,616 @@
-'use client'
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Poppins } from 'next/font/google'
-import Link from 'next/link'
+"use client";
+
+import React, { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { easeOut } from 'framer-motion/dom';
+import Image from 'next/image';
+import LandingHeader from '@/components/landingheader';
+import Bonuses from '@/components/bonuses';
+import Why from "@/components/why";
+import Cta1Section from "@/components/cta1section";
+import Cta2Section from "@/components/cta2section";
+import FAQ from "@/components/faq";
 import Footer from "@/components/Footer";
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-});
+interface FormData {
+  marketingType: string[];
+  averageRevenue: string;
+  monthlySpend: string;
+  treatments: string;
+  website: string;
+  location: string;
+  investmentIntent: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  position: string;
+  acceptedPrivacy: boolean;
+}
 
-export default function HeroSection() {
-  const [isLoaded, setIsLoaded] = useState(false)
+type QuizStep = {
+  question: string;
+  type: "multiple" | "single" | "input" | "contact";
+  field?: keyof FormData;
+  options?: { value: string; label: string }[];
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+};
 
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
+};
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8, ease: easeOut } },
+};
+const grow = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.7, ease: easeOut, delay: 0.2 },
+  },
+};
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        delay: 0.2 + i * 0.1,
-        ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
-      },
-    }),
-  }
+export default function DigitalMarketingQuiz() {
+  const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState<FormData>({
+    marketingType: [],
+    averageRevenue: "",
+    monthlySpend: "",
+    treatments: "",
+    website: "",
+    location: "",
+    investmentIntent: "",
+    fullName: "",
+    email: "",
+    phone: "",
+    position: "",
+    acceptedPrivacy: false,
+  });
+  const [errors, setErrors] = useState<{[key: number]: string}>({});
 
-  const buttonVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
-      },
+  const topSectionRef = useRef<HTMLDivElement>(null);
+  const scrollToTop = () => {
+    if (topSectionRef.current) {
+      topSectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const quizSteps: QuizStep[] = [
+    {
+      question: "Jelenleg milyen típusú digitális marketinget alkalmaznak?",
+      type: "multiple",
+      field: "marketingType",
+      options: [
+        { value: "facebook", label: "META" },
+        { value: "google", label: "Google" },
+        { value: "seo", label: "SEO" },
+        { value: "other", label: "Egyéb" },
+      ],
     },
-  }
-
-  const videoVariants = {
-    hidden: { opacity: 0, scale: 1.05 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        delay: 0.5,
-        ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
-      },
+    {
+      question: "Mekkora volt az elmúlt 90 napban a sebészet átlagos havi bevétele?",
+      type: "input",
+      field: "averageRevenue",
+      inputProps: { type: "text", placeholder: "Írja be forintban..." },
     },
-  }
+    {
+      question: "Mekkora a teljes, átlagos havi marketingköltségük?",
+      type: "single",
+      field: "monthlySpend",
+      options: [
+        { value: "100-200", label: "100-200 ezer Ft" },
+        { value: "300-500", label: "300-500 ezer Ft" },
+        { value: "600-1000", label: "600 ezer-1 millió Ft" },
+        { value: "1000-2000", label: "1-2 millió Ft" },
+        { value: "2000+", label: "2+ millió Ft" },
+      ],
+    },
+    {
+      question: "Milyen beavatkozásokat szeretnének hirdetni?",
+      type: "input",
+      field: "treatments",
+      inputProps: { type: "text", placeholder: "Pl. orrplasztika, hasplasztika, implantátum" },
+    },
+    {
+      question: "Sebészet weboldala?",
+      type: "input",
+      field: "website",
+      inputProps: { type: "url", placeholder: "https://..." },
+    },
+    {
+      question: "Hol található a sebészet?",
+      type: "input",
+      field: "location",
+      inputProps: { type: "text", placeholder: "Város" },
+    },
+    {
+      question:
+        "Csak akkor kérjen időpontot, ha nyitott arra, hogy a sebészet fejlesztésébe fektessen, valamint elégedett a szolgáltatásainkkal.",
+      type: "single",
+      field: "investmentIntent",
+      options: [
+        { value: "ready", label: "Készen állok, ha látom az értéket." },
+        { value: "not_invest", label: "Nem tervezek befektetni." },
+      ],
+    },
+    {
+      question: "Kapcsolattartási adatok",
+      type: "contact",
+    },
+  ];
 
+  const iconMap: Record<string, string> = {
+  facebook:  'https://cdn-icons-png.flaticon.com/512/6033/6033716.png', // Meta logo
+  instagram: 'https://cdn-icons-png.flaticon.com/512/6033/6033716.png', // Meta logo
+  google:    'https://cdn-icons-png.flaticon.com/512/281/281764.png',  // Google logo
+  seo:       'https://cdn-icons-png.flaticon.com/512/3648/3648841.png', // SEO magnifying‑glass icon
+  other: 'https://cdn-icons-png.flaticon.com/512/5726/5726470.png'
+  };
+
+  const validateStep = (step: number): boolean => {
+    const stepData = quizSteps[step - 1];
+    let isValid = true;
+    let errorMessage = '';
+
+    if (stepData.type === "multiple" && stepData.field === "marketingType") {
+      if (formData.marketingType.length === 0) {
+        isValid = false;
+        errorMessage = 'Kérjük, válasszon legalább egy opciót';
+      }
+    } else if (stepData.type === "single" || stepData.type === "multiple") {
+      if (!formData[stepData.field!]) {
+        isValid = false;
+        errorMessage = 'Kérjük, válasszon egy opciót';
+      }
+    } else if (stepData.type === "input" && stepData.field) {
+      const value = formData[stepData.field];
+      if (typeof value === 'string' && value.trim() === '') {
+        isValid = false;
+        errorMessage = 'Kérjük, töltse ki ezt a mezőt';
+      }
+    }
+
+    if (!isValid) {
+      setErrors(prev => ({...prev, [step]: errorMessage}));
+    } else {
+      setErrors(prev => {
+        const newErrors = {...prev};
+        delete newErrors[step];
+        return newErrors;
+      });
+    }
+
+    return isValid;
+  };
+
+  const handleNext = () => {
+    if (!validateStep(currentStep)) return;
+    setCurrentStep((s) => Math.min(s + 1, quizSteps.length));
+  };
+
+  const handleBack = () =>
+    setCurrentStep((s) => Math.max(s - 1, 1));
+
+  const updateFormData = <K extends keyof FormData>(field: K, value: FormData[K]) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+ const handleSelection = (value: string) => {
+    const step = quizSteps[currentStep - 1];
+    if (step.type === "multiple" && step.field === "marketingType") {
+      const arr = [...formData.marketingType];
+      const index = arr.indexOf(value);
+      
+      if (index > -1) {
+        arr.splice(index, 1);
+      } else {
+        arr.push(value);
+      }
+      
+      updateFormData("marketingType", arr);
+    } else if (step.field) {
+      updateFormData(step.field, value);
+    }
+  };
+
+  const renderNextButton = () => (
+    <button
+      onClick={handleNext}
+      className="bg-yellow-400 text-black text-lg sm:text-xl font-bold w-full py-2 sm:py-3 rounded-xl hover:bg-yellow-500 transition-colors cursor-pointer btn-shadow"
+    >
+      TOVÁBB
+    </button>
+  );
+
+  const renderStep = () => {
+    const step = quizSteps[currentStep - 1];
+
+    const QuestionTitle = () => (
+      <h2 className="text-2xl min-[560px]:text-3xl lg:text-2xl xl:text-3xl font-semibold text-center mb-4 md:mb-8 text-white text-shadow-md text-shadow-black/50 px-2">
+        {step.question}
+      </h2>
+    );
+
+    const renderBackButton = () => {
+      if (currentStep > 1) {
+        return (
+          <div className="flex justify-start w-full">
+            <button
+              onClick={handleBack}
+              className="text-white underline text-sm sm:text-base mt-2 hover:text-gray-300 transition-colors"
+            >
+              Vissza
+            </button>
+          </div>
+        );
+      }
+      return null;
+    };
+
+    if (step.type === "input" && step.field) {
+      const value = formData[step.field] as string;
+      return (
+        <>
+          <QuestionTitle />
+          <div className="space-y-4">
+            <input
+              required
+              {...step.inputProps}
+              value={value}
+              onChange={(e) => updateFormData(step.field as keyof FormData, e.target.value)}
+              className="w-full p-2 sm:p-3 border border-white/50 rounded-xl mb-2 bg-transparent text-white placeholder:text-gray-300"
+            />
+            {errors[currentStep] && (
+              <p className="text-red-400 text-sm">{errors[currentStep]}</p>
+            )}
+            {renderBackButton()}
+            {renderNextButton()}
+          </div>
+        </>
+      );
+    }
+
+   if (step.type === "multiple") {
   return (
     <>
-      <section className={`relative w-full overflow-hidden ${poppins.className}`}>
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black to-[#5271ff] opacity-90" />
-        {/* from-[#000816] maybe better (used in application background svg as the "black" part) */}
-        
-        {/* SVG Patterns */}
-        <div className="absolute inset-0 overflow-hidden">
-          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="wave-pattern-1" x="0" y="0" width="1500" height="800" patternUnits="userSpaceOnUse">
-                <path 
-                  d="M0,200 C300,150 400,250 800,200 C1200,150 1300,250 1500,200 
-                     M0,400 C200,350 500,450 900,400 C1300,350 1400,450 1500,400"
-                  fill="none" 
-                  stroke="rgba(255, 255, 255, 0.1)" 
-                  strokeWidth="1"
-                />
-              </pattern>
-              <pattern id="wave-pattern-2" x="100" y="50" width="1500" height="800" patternUnits="userSpaceOnUse">
-                <path 
-                  d="M0,320 C250,270 500,370 750,320 C1000,270 1250,370 1500,320 
-                     M0,520 C250,470 500,570 750,520 C1000,470 1250,570 1500,520"
-                  fill="none" 
-                  stroke="rgba(255, 255, 255, 0.08)" 
-                  strokeWidth="1"
-                />
-              </pattern>
-              <pattern id="dot-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                <circle cx="10" cy="10" r="1" fill="rgba(255, 255, 255, 0.3)" />
-                <circle cx="30" cy="40" r="0.8" fill="rgba(255, 255, 255, 0.2)" />
-                <circle cx="50" cy="20" r="0.6" fill="rgba(255, 255, 255, 0.35)" />
-              </pattern>
-            </defs>
+      <QuestionTitle />
+      <div className="space-y-4">
+        <div className="grid grid-cols-2 gap-2 max-w-md mx-auto mb-4 sm:mb-6">
+          {step.options?.map((opt) => (
+            <label
+              key={opt.value}
+              className={`flex items-center p-2 sm:p-3 rounded-xl cursor-pointer transition-all h-full min-h-[40px] border border-white/50 ${
+                formData.marketingType.includes(opt.value)
+                  ? 'bg-white/10 text-white font-bold'
+                  : 'bg-black/25 text-white font-medium hover:bg-white/5'
+              }`}
+            >
+              <div className="w-6 h-6 mr-1 sm:mr-2 flex items-center justify-center">
+                {opt.value  && (
+                  <Image
+                    src={iconMap[opt.value]}
+                    alt={opt.label}
+                    width={0}
+                    height={0}
+                    className="w-5 h-5"
+                  />
+                )}
+              </div>
+              <span className="text-xs sm:text-sm flex-1">
+                {opt.label}
+              </span>
+              <input
+                type="checkbox"
+                checked={formData.marketingType.includes(opt.value)}
+                onChange={() => handleSelection(opt.value)}
+                className="hidden"
+              />
+            </label>
+          ))}
+        </div>
+        {errors[currentStep] && (
+          <p className="text-red-400 text-sm text-center">{errors[currentStep]}</p>
+        )}
+        {renderBackButton()}
+        {renderNextButton()}
+      </div>
+    </>
+  );
+}
 
-            <rect x="0" y="0" width="100%" height="100%" fill="url(#wave-pattern-1)" />
-            <rect x="0" y="0" width="100%" height="100%" fill="url(#wave-pattern-2)" />
-            <rect x="0" y="0" width="100%" height="100%" fill="url(#dot-pattern)" opacity="0.4" />
-            <path 
-              d="M-100,300 C100,200 200,400 500,300 C800,200 1100,400 1400,300 C1700,200"
-              fill="none" 
-              stroke="rgba(255, 255, 255, 0.05)" 
-              strokeWidth="80"
-              strokeLinecap="round"
+    if (step.type === "single") {
+      return (
+        <>
+          <QuestionTitle />
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 gap-2 max-w-md mx-auto mb-4 sm:mb-6">
+              {step.options?.map((opt) => (
+                <label
+                  key={opt.value}
+                  className={`flex items-center p-2 sm:p-3 rounded-xl cursor-pointer transition-all h-full min-h-[40px] border border-white/50 ${
+                    formData[step.field!] === opt.value
+                      ? 'bg-white/10 text-white font-bold'
+                      : 'bg-black/25 text-white font-medium hover:bg-white/5'
+                  }`}
+                >
+                  <span className="text-center text-xs sm:text-sm">
+                    {opt.label}
+                  </span>
+                  <input
+                    type="radio"
+                    name={step.field}
+                    checked={formData[step.field!] === opt.value}
+                    onChange={() => handleSelection(opt.value)}
+                    className="hidden"
+                  />
+                </label>
+              ))}
+            </div>
+            {errors[currentStep] && (
+              <p className="text-red-400 text-sm text-center">{errors[currentStep]}</p>
+            )}
+            {renderBackButton()}
+            {renderNextButton()}
+          </div>
+        </>
+      );
+    }
+
+    if (step.type === "contact") {
+      const canSubmit =
+        formData.fullName.trim() !== "" &&
+        formData.email.trim() !== "" &&
+        formData.phone.trim() !== "" &&
+        formData.acceptedPrivacy;
+
+      return (
+        <>
+          <QuestionTitle />
+          <div className="max-w-md mx-auto">
+            <input
+              required
+              type="text"
+              placeholder="Teljes név"
+              value={formData.fullName}
+              onChange={(e) => updateFormData("fullName", e.target.value)}
+              className="w-full p-2 sm:p-3 border border-white/50 rounded-xl mb-2 bg-transparent text-white placeholder:text-gray-300"
             />
-            <path 
-              d="M0,100 C200,120 400,80 600,100 C800,120 1000,80 1200,100 C1400,120 1600,80 1800,100"
-              fill="none" 
-              stroke="rgba(255, 255, 255, 0.07)" 
-              strokeWidth="0.8"
+            <input
+              required
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={(e) => updateFormData("email", e.target.value)}
+              className="w-full p-2 sm:p-3 border border-white/50 rounded-xl mb-2 bg-transparent text-white placeholder:text-gray-300"
             />
-            <path 
-              d="M0,600 C200,620 400,580 600,600 C800,620 1000,580 1200,600 C1400,620 1600,580 1800,600"
-              fill="none" 
-              stroke="rgba(255, 255, 255, 0.07)" 
-              strokeWidth="0.8"
+            <input
+              required
+              type="tel"
+              placeholder="Telefonszám"
+              value={formData.phone}
+              onChange={(e) => updateFormData("phone", e.target.value)}
+              className="w-full p-2 sm:p-3 border border-white/50 rounded-xl mb-2 bg-transparent text-white placeholder:text-gray-300"
             />
+            <input
+              type="text"
+              placeholder="Pozíció a klinikán"
+              value={formData.position}
+              onChange={(e) => updateFormData("position", e.target.value)}
+              className="w-full p-2 sm:p-3 border border-white/50 rounded-xl mb-3 sm:mb-4 bg-transparent text-white placeholder:text-gray-300"
+            />
+            <label className="flex items-start space-x-2 mb-4 sm:mb-6">
+              <input
+                required
+                type="checkbox"
+                checked={formData.acceptedPrivacy}
+                onChange={(e) => updateFormData("acceptedPrivacy", e.target.checked)}
+                className="w-5 h-5 mt-1 rounded cursor-pointer"
+              />
+              <span className="text-white text-xs sm:text-sm text-shadow-xs text-shadow-black cursor-pointer">
+                Hozzájárulok, hogy a megadott adataimat a kapcsolatfelvétel és
+                az időpont egyeztetés céljából kezeljük.
+              </span>
+            </label>
+            {!formData.acceptedPrivacy && (
+              <p className="text-red-400 text-sm mb-4">Kérjük, fogadja el az adatkezelési feltételeket</p>
+            )}
+            {renderBackButton()}
+            <button
+              disabled={!canSubmit}
+              onClick={async () => {
+                const payload = {
+                  full_name: formData.fullName,
+                  email: formData.email,
+                  phone: formData.phone,
+                  position: formData.position,
+                  marketing_type: formData.marketingType.join(", "),
+                  average_revenue: formData.averageRevenue,
+                  monthly_spend: formData.monthlySpend,
+                  treatments: formData.treatments,
+                  website: formData.website,
+                  location: formData.location,
+                  investment_intent: formData.investmentIntent,
+                  accepted_privacy: formData.acceptedPrivacy,
+                };
+                try {
+                  await fetch(
+                    "https://services.leadconnectorhq.com/hooks/l0c8ywCOTjNlqdeCpdIQ/webhook-trigger/f04446c2-e1f4-4c05-b6da-6a3def092b46",
+                    {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(payload),
+                    }
+                  );
+                  window.location.href = "/booking";
+                } catch (error) {
+                  console.error("Error submitting form:", error);
+                  alert("Hiba történt a beküldés során.");
+                }
+              }}
+              className={`w-full text-lg sm:text-xl py-2 sm:py-3 rounded-xl font-bold transition-colors ${
+                !canSubmit
+                  ? "bg-gray-400 cursor-not-allowed text-gray-200"
+                  : "bg-yellow-400 text-black hover:bg-[#000816] hover:text-white cursor-pointer btn-shadow"
+              }`}
+            >
+              KÜLDÉS
+            </button>
+          </div>
+        </>
+      );
+    }
+
+    return null;
+  };
+
+  const viewportOptions = { once: true, margin: "0px 0px -100px 0px" };
+
+  return (
+    <main className="spacer layer1
+    bg-no-repeat bg-center
+    bg-contain bg-scroll
+    md:bg-auto md:bg-fixed">
+      <LandingHeader />
+<div
+  ref={topSectionRef}
+  className="w-full px-8 sm:px-16 md:px-32 lg:px-16 flex flex-col justify-between items-center pt-12 md:pt-16 lg:pt-24 backdrop-blur-0 telo-layer1"
+>
+  <div className="flex flex-col justify-between items-center w-full ">
+    <motion.div
+      className="hidden lg:block max-w-4xl mx-auto text-center"
+      initial="hidden"
+      animate="visible"
+      variants={fadeUp}
+    >
+      <p className="text-white font-medium text-sm sm:text-base md:text-lg mt-8">
+        🎁 BÓNUSZ #1 - Csak töltse ki az űrlapot, és hozzáférést kap egy 8 lépéses META útmutatóhoz!
+      </p>
+    </motion.div>
+
+    <div className="flex flex-col lg:flex-row lg:justify-center items-center lg:h-[586px] xl:h-[594px] w-full my-16 sm:my-8 md:my-0">
+      <motion.div
+        className="flex justify-center items-center lg:mr-8 2xl:mr-16"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+      >
+   <motion.div
+  className="flex flex-col items-center text-center font-extrabold text-white leading-tight text-shadow-lg text-shadow-black/50"
+  variants={fadeUp}
+>
+  <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl">
+    Szerezzen <span className="text-white">5-10 új</span>
+  </div>
+  <div className="text-yellow-400 underline text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl">
+    plasztikai pácienst
+  </div>
+  <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl">
+    <span className="italic">havonta</span>, teljesen
+  </div>
+  <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl">
+    kockázatmentesen!
+  </div>
+</motion.div>
+      </motion.div>
+
+      <motion.div
+        className="block lg:hidden mt-4 max-w-md md:max-w-lg mx-auto text-center"
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+      >
+        <p className="text-white/90 font-medium text-xs sm:text-sm min-[560px]:text-base md:text-lg">
+          🎁 BÓNUSZ #1 - Csak töltse ki az űrlapot, és hozzáférést kap egy 8 lépéses meta útmutatóhoz!
+        </p>
+      </motion.div>
+
+      <motion.div
+        className="bg-white/10 backdrop-blur-xs backdrop-brightness-110 rounded-2xl p-8 w-full max-w-lg flex flex-col justify-center lg:ml-8 2xl:ml-16 border-2 border-gray-400 my-shadow mt-12 lg:mt-0"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+        variants={grow}
+      >
+        {renderStep()}
+      </motion.div>
+    </div>
+  </div>
+  <div className="w-[250%] md:w-[200%] h-32 wave backdrop-blur-0 block lg:hidden">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill"></path>
+    </svg>
+  </div>
+</div>
+
+
+      <div className="w-[250%] md:w-[175%] xl:w-full wave backdrop-blur-0 hidden lg:block">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill"></path>
+        </svg>
+      </div>
+         <Bonuses />
+      <div className="flex flex-col items-center spacer bg-white layer3">
+        <div className="w-full px-8 sm:px-16 md:px-32 lg:px-16 bg-[#000816] pb-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOptions}
+            variants={fadeUp}
+          >
+            <Why />
+          </motion.div>
+        </div>
+        <div className="w-[250%] md:w-[175%] xl:w-full wave hidden lg:block">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
           </svg>
         </div>
-
-        {/* Hero Content */}
-        <div className="relative max-w-screen-xl mx-auto px-4 sm:px-8 pt-12 xl:pt-16 pb-10 xl:pb-19">
-          <div className="flex flex-col items-center lg:flex-row lg:pt-0 lg:my-24 xl:my-36">
-            {/* Left Column */}
-            <div className="lg:w-1/2 flex flex-col justify-center z-10 mt-8 lg:mt-0">
-              <div className="w-16 md:w-24 h-1 bg-white mb-4"></div>
-              <motion.h1
-                className="font-extrabold mb-6 text-2xl min-[440px]:text-3xl sm:text-4xl min-[1095px]:!text-5xl xl:!text-6xl leading-tight text-white text-shadow-lg text-shadow-black/50"
-                initial="hidden"
-                animate={isLoaded ? 'visible' : 'hidden'}
-                custom={0}
-                variants={textVariants}
-              >
-                Esztétikai Klinikák
-                <br />
-                <span className="text-yellow-400">AI növekedési
-                <br />partnere</span>
-                <br />
-         
-              </motion.h1>
-              <motion.p
-                className="mb-8 max-w-md text-white/90 min-[440px]:text-sm sm:text-base min-[1095px]:text-lg"
-                initial="hidden"
-                animate={isLoaded ? 'visible' : 'hidden'}
-                custom={1}
-                variants={textVariants}
-              >
-                Több páciens, kevesebb kihagyott lehetőség,<br />teljesítmény alapú díjazás. <br /> Egy átlagon felüli ügyfélszerző rendszerrel.
-              </motion.p>
-              <motion.div
-                initial="hidden"
-                animate={isLoaded ? 'visible' : 'hidden'}
-                variants={buttonVariants}
-                className="flex gap-4 flex-wrap justify-center lg:justify-start"
-              >
-                <Link href="/booking">
-                  <button className="min-[440px]:text-base sm:text-lg min-[1095px]:!text-xl px-4 py-2 md:px-6 md:py-2 bg-yellow-400 text-black hover:bg-yellow-500 font-bold rounded-xl hover:-translate-y-1 transition cursor-pointer new-shadow">
-                   Foglaljon időpontot!
-                  </button>
-                </Link>
-                <Link href="/blog">
-                  <button className="min-[440px]:text-base sm:text-lg min-[1095px]:!text-xl px-4 py-2 md:px-6 md:py-2 bg-yellow-400/0 text-white hover:bg-white/5 font-semibold rounded-xl hover:-translate-y-1 transition cursor-pointer new-shadow">
-                    Hogyan működik?
-                  </button>
-                </Link>
-              </motion.div>
-            </div>
-
-            {/* Right Column */}
-            <div className="w-9/10 min-[500px]:w-8/10 lg:w-1/2 flex items-center min-[500px]:justify-center lg:justify-end mt-8 sm:mt-16 lg:mt-0 mb-8 lg:mb-0">
-              <motion.div
-                className="w-full max-w-md lg:max-w-lg xl:max-w-xl relative z-10"
-                initial="hidden"
-                animate={isLoaded ? 'visible' : 'hidden'}
-                variants={videoVariants}
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-xl transform translate-x-4 translate-y-4"></div>
-                  <div className="relative bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden border border-white/20">
-                    <div className="h-12 bg-yellow-700/5 border-b border-white/20 flex items-center px-4">
-                      <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500 mr-4"></div>
-                      <div className="h-6 w-3/4 bg-gray-300/10 rounded-full"></div>
-                    </div>
-                    <div className="aspect-video bg-black/5 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#5271ff]/10 to-black/10"></div>
-                      <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center mb-4 shadow-lg">
-                          <div className="w-15 h-15 rounded-full bg-black flex items-center justify-center text-yellow-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                            </svg>
-                          </div>
-                        </div>
-                        <p className="text-yellow-400 font-semibold text-shadow-lg text-shadow-black/50">Platform Demo Video</p>
-                        <p className="text-yellow-400/80 text-sm mt-1 text-shadow-lg text-shadow-black/50">See how our solution works</p>
-                      </div>
-                    </div>
-                    <div className="p-4 bg-yellow-700/5 border-t border-white/2 0 flex items-center">
-                      <div className="w-full h-2 bg-gray-300/15 rounded-full overflow-hidden">
-                        <div className="h-full w-1/3 bg-yellow-400"></div>
-                      </div>
-                      <div className="ml-4 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
+        <div className="w-full px-8 sm:px-16 md:px-32 lg:px-16 mb-10 md:mb-16">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOptions}
+            variants={fadeUp}
+          >
+            <Cta1Section scrollToTop={scrollToTop} />
+          </motion.div>
         </div>
-      </section>
-
-      {/* <section className='h-96 bg-black border-b-2 border-white'>
-        <div className="flex justify-center align-center">
-          <h1 className="font-extrabold mb-6 text-2xl min-[440px]:text-3xl sm:text-4xl min-[1095px]:!text-5xl xl:!text-6xl leading-tight text-shadow-lg text-shadow-black/50 text-yellow-400">Csapatunk</h1>
+        <div className="triangle">
+          <svg className="h-12 sm:h-16 lg:h-24" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M1200 0L0 0 598.97 114.72 1200 0z" className="shape-fill"></path>
+          </svg>
         </div>
-      </section> */}
-
-      {/* Footer placed outside HeroSection */}
-      <Footer />
-    </>
-  )
+        <div className="w-full px-8 sm:px-16 md:px-32 lg:px-16 bg-[#000816]">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOptions}
+            variants={fadeUp}
+          >
+            <Cta2Section scrollToTop={scrollToTop} />
+          </motion.div>
+        </div>
+        <div className="triangle">
+          <svg className="h-12 sm:h-16 lg:h-24" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z" className="shape-fill"></path>
+          </svg>
+        </div>
+        <div className="w-full px-8 sm:px-16 md:px-32 lg:px-16 mb-10 md:mb-16">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOptions}
+            variants={fadeUp}
+          >
+            <FAQ />
+          </motion.div>
+        </div>
+      </div>
+      <div>
+        <Footer />
+      </div>
+    </main>
+  );
 }
