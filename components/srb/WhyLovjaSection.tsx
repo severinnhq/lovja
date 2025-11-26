@@ -17,7 +17,7 @@ export default function WhyLovjaSection() {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-extrabold text-center mb-12"
         >
-          Miért <span className="text-yellow-400">elengedhetetlen</span> a Lovja?
+          Zašto je Lovja<span className="text-yellow-400">neizostavna</span>?
         </motion.h2>
 
         {/* Grid: 1 column <1024px, 2 columns ≥1024px */}
@@ -36,24 +36,24 @@ export default function WhyLovjaSection() {
             <ul className="space-y-3 text-base text-white/90 leading-relaxed">
               {/* Desktop: 4 sentences */}
               <li className="hidden lg:block">
-                ✅ Nincs fogcsiszolás vagy minimális beavatkozás – a fogak épek maradnak.
+                ✅ Bez brušenja ili sa minimalnom intervencijom – vaši zubi ostaju potpuno očuvani.
               </li>
               <li className="hidden lg:block">
-                ✅ Természetesebb ragyogás és hosszabb távú fehérség a speciális mikrotextúra miatt.
+                ✅ Prirodniji sjaj i dugotrajnija belina zahvaljujući specijalnoj mikrostrukturi.
               </li>
               <li className="hidden lg:block">
-                ✅ Tökéletes, 0,01 mm-es illeszkedés, nincs hézag vagy szélsötétedés.
+                ✅ Savršena preciznost od 0,01 mm – bez praznina i tamnih ivica.
               </li>
               <li className="hidden lg:block">
-                ✅ Hosszabb élettartam, kevésbé hajlamos repedésre vagy lepattogásra. 
+                ✅ Duži vek trajanja – manje podložno pucanju i krzanju.
               </li>
 
               {/* Mobile & Tablet: first 2 sentences */}
               <li className="block lg:hidden">
-                ✅ Nincs fogcsiszolás vagy minimális beavatkozás – a fogak épek maradnak.
+                ✅ Bez brušenja ili sa minimalnom intervencijom – vaši zubi ostaju potpuno očuvani.
               </li>
               <li className="block lg:hidden">
-                ✅ Természetesebb ragyogás és hosszabb távú fehérség a speciális mikrotextúra miatt.
+                ✅ Prirodniji sjaj i dugotrajnija belina zahvaljujući specijalnoj mikrostrukturi.
               </li>
             </ul>
           </motion.div>
@@ -67,29 +67,29 @@ export default function WhyLovjaSection() {
             className="bg-red-900/20 border border-red-600/30 rounded-2xl p-8 shadow-lg"
           >
             <h3 className="text-2xl font-bold text-red-400 mb-4">
-             Hagyományos héjak
+            Tradicionalne viniri
             </h3>
             <ul className="space-y-3 text-base text-white/90 leading-relaxed">
               {/* Desktop: 4 sentences */}
               <li className="hidden lg:block">
-                ⚠️ Gyakran jelentős csiszolást igényelnek, ami végleges foganyag-vesztéssel jár.
+                ⚠️ Često zahtevaju značajno brušenje, što dovodi do trajnog gubitka zubne strukture.
               </li>
               <li className="hidden lg:block">
-                ⚠️ Idővel elszíneződhetnek és mesterséges fényűek lehetnek.
+                ⚠️ Mogu se vremenom prebojiti i izgledati veštački.
               </li>
               <li className="hidden lg:block">
-                ⚠️ Pontatlanság esetén mikrohézagok és ínyproblémák alakulhatnak ki.
+                ⚠️ Neprecizno naleganje može izazvati mikro-pukotine i probleme sa desnima.
               </li>
               <li className="hidden lg:block">
-                ⚠️ Rövidebb élettartam, gyakori csere vagy javítás szükséges.
+                ⚠️ Kraći vek trajanja, česte zamene ili popravke.
               </li>
 
               {/* Mobile & Tablet: first 2 sentences */}
               <li className="block lg:hidden">
-                ⚠️ Gyakran jelentős csiszolást igényelnek, ami végleges foganyag-vesztéssel jár.
+                ⚠️ Često zahtevaju značajno brušenje, što dovodi do trajnog gubitka zubne strukture.
               </li>
               <li className="block lg:hidden">
-                ⚠️ Idővel elszíneződhetnek és mesterséges fényűek lehetnek.
+                ⚠️ Mogu se vremenom prebojiti i izgledati veštački.
               </li>
             </ul>
           </motion.div>
@@ -104,16 +104,16 @@ export default function WhyLovjaSection() {
           className="text-center mt-16"
         >
         <p className="text-lg md:text-xl text-white/90 mb-6">
-  Ne elégedjen meg a középszerű mosollyal.  
+        Ne zadovoljavajte se prosečnim osmehom. 
   <span className="block text-yellow-400 font-bold mt-1">
-    Tegye meg az első lépést a Lovja prémium héjakkal.
+  Napravite prvi korak uz Lovja premium viniri.
   </span>
 </p>
 <a
   href="#quiz"
   className="inline-block bg-yellow-400 text-black font-bold py-3 px-8 rounded-xl hover:bg-yellow-500 transition-colors btn-shadow"
 >
-  Kérem az ingyenes mosolytervezést →
+Zatražite besplatni dizajn osmeha →
 </a>
 
         </motion.div>

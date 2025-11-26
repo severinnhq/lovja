@@ -58,10 +58,10 @@ const FAQ = () => {
           transition={{ duration: 0.5 }}
           className="text-xl md:text-2xl font-semibold text-center mb-14"
         >
-          <span className="text-white">Még mindig bizonytalan?</span>
+          <span className="text-white">Još uvek niste sigurni?</span>
           <br />
           <span className="text-4xl md:text-4xl font-extrabold text-shadow-md text-shadow-black/40">
-            Gyakran Ismételt Kérdések
+          Često postavljana pitanja
           </span>
         </motion.h2>
 

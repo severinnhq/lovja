@@ -524,7 +524,7 @@ export default function DigitalMarketingQuiz() {
       variants={fadeUp}
     >
       <p className="text-white font-medium text-sm sm:text-base md:text-lg mt-8">
-      🎁 BÓNUSZ #1 - Csak töltse ki az űrlapot, és kap egy ingyenes exkluzív mosolyátalakító elemzést / CBTC / szájhigiénia!
+      🎁 BONUS #1 – Vyplňte formulár a získajte bezplatnú exkluzívnu analýzu premeny úsmevu / CBCT / dentálnu hygienu!
       </p>
     </motion.div>
 
@@ -541,16 +541,16 @@ export default function DigitalMarketingQuiz() {
 >
   <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
                   [text-shadow:4px_4px_8px_black]">
-    Tökéletes <span className="text-white">mosoly</span>
+    Dokonalý <span className="text-white">úsmev</span>
   </div>
   <div className="text-yellow-400 underline text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
                   [text-shadow:4px_4px_8px_black]">
-    csiszolás nélkül
+    bez brúsenia
   </div>
   
   <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
                   [text-shadow:4px_4px_8px_black]">
-    1 nap alatt!
+    už za 1 deň!
   </div>
 </motion.div>
 
@@ -563,7 +563,7 @@ export default function DigitalMarketingQuiz() {
         variants={fadeUp}
       >
         <p className="text-white/90 font-medium text-xs sm:text-sm min-[560px]:text-base md:text-lg">
-          🎁 BÓNUSZ #1 - Csak töltse ki az űrlapot, és hozzáférést kap egy 8 lépéses meta útmutatóhoz!
+        🎁 BONUS #1 – Vyplňte formulár a získajte bezplatnú exkluzívnu analýzu premeny úsmevu / CBCT / dentálnu hygienu!
         </p>
       </motion.div>
 
