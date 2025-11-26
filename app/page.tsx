@@ -249,15 +249,9 @@ export default function DigitalMarketingQuiz() {
     const step = quizSteps[currentStep - 1];
   
     if (step.type === "multiple" && step.field) {
-      if (step.field === 'marketingType') {
-        handleMultiSelect(step.field, value);
-      } else {
-        console.warn("Unknown multiple-select field:", step.field);
-      }
-    } else if (step.field) {
-      // single-select fields are strings
-      updateFormData(step.field, value as unknown as FormData[typeof step.field]);
+      handleMultiSelect(step.field as MultiSelectFields, value);
     }
+    
   };
   
   
@@ -332,7 +326,9 @@ export default function DigitalMarketingQuiz() {
             <label
               key={opt.value}
               className={`flex items-center p-2 sm:p-3 rounded-xl cursor-pointer transition-all h-full min-h-[40px] border border-white/50 ${
-                formData.marketingType.includes(opt.value)
+                (formData[step.field!] as string[]).includes(opt.value)
+
+
                   ? 'bg-white/10 text-white font-bold'
                   : 'bg-black/25 text-white font-medium hover:bg-white/5'
               }`}
@@ -344,8 +340,10 @@ export default function DigitalMarketingQuiz() {
               </span>
               <input
                 type="checkbox"
-                checked={formData.marketingType.includes(opt.value)}
+                checked={(formData[step.field!] as string[]).includes(opt.value)}
                 onChange={() => handleSelection(opt.value)}
+                
+                
                 className="hidden"
               />
             </label>
@@ -367,15 +365,16 @@ export default function DigitalMarketingQuiz() {
           <QuestionTitle />
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-2 max-w-md mx-auto mb-4 sm:mb-6">
-              {step.options?.map((opt) => (
-                <label
-                  key={opt.value}
-                  className={`flex items-center p-2 sm:p-3 rounded-xl cursor-pointer transition-all h-full min-h-[40px] border border-white/50 ${
-                    formData[step.field!] === opt.value
-                      ? 'bg-white/10 text-white font-bold'
-                      : 'bg-black/25 text-white font-medium hover:bg-white/5'
-                  }`}
-                >
+            {step.options?.map((opt) => (
+  <label
+    key={opt.value}
+    className={`flex items-center p-2 sm:p-3 rounded-xl cursor-pointer transition-all h-full min-h-[40px] border border-white/50 ${
+      formData.marketingType.includes(opt.value)
+        ? 'bg-white/10 text-white font-bold'
+        : 'bg-black/25 text-white font-medium hover:bg-white/5'
+    }`}
+  >
+
                   <span className="text-center text-xs sm:text-sm">
                     {opt.label}
                   </span>
