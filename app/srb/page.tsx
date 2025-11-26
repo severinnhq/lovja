@@ -4,11 +4,11 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { easeOut } from 'framer-motion/dom';
 import Image from 'next/image';
-import LandingHeader from '@/components/en/landingheader';
-import WhyLovjaSection from "@/components/en/WhyLovjaSection";
-import FAQ from "@/components/en/faq";
-import Footer from "@/components/en/Footer";
-import ReviewsGallery from "@/components/en/ReviewsGallery";
+import LandingHeader from '@/components/srb/landingheader';
+import WhyLovjaSection from "@/components/srb/WhyLovjaSection";
+import FAQ from "@/components/srb/faq";
+import Footer from "@/components/srb/Footer";
+import ReviewsGallery from "@/components/srb/ReviewsGallery";
 
 interface FormData {
   marketingType: string[];

@@ -14,7 +14,7 @@ interface FormData {
   marketingType: string[];
   averageRevenue: string;
   monthlySpend: string;
-  treatments: string; // pl. orrplasztika, hasplasztika, implantátum
+  treatments: string;
   website: string;
   location: string;
   investmentIntent: string;
@@ -214,7 +214,7 @@ export default function DigitalMarketingQuiz() {
       onClick={handleNext}
       className="bg-yellow-400 text-black text-lg sm:text-xl font-bold w-full py-2 sm:py-3 rounded-xl hover:bg-yellow-500 transition-colors cursor-pointer btn-shadow"
     >
-      TOVÁBB
+      NEXT
     </button>
   );
 
@@ -463,7 +463,9 @@ export default function DigitalMarketingQuiz() {
 
   return (
     <main className="spacer layer1
-    ">
+    bg-no-repeat bg-center
+    bg-contain bg-scroll
+    md:bg-auto md:bg-fixed">
       <LandingHeader />
 <div
   ref={topSectionRef}
@@ -529,11 +531,19 @@ export default function DigitalMarketingQuiz() {
       </motion.div>
     </div>
   </div>
-  
+  <div className="w-[250%] md:w-[200%] h-32 wave backdrop-blur-0 block lg:hidden">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill"></path>
+    </svg>
+  </div>
 </div>
 
 
-      
+      <div className="w-[250%] md:w-[175%] xl:w-full wave backdrop-blur-0 hidden lg:block">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill"></path>
+        </svg>
+      </div>
        
       <div className="flex flex-col items-center spacer bg-white layer3">
         <div className="w-full px-8 sm:px-16 md:px-32 lg:px-16 bg-[#000816] pb-8">
@@ -545,11 +555,11 @@ export default function DigitalMarketingQuiz() {
           >
             <WhyLovjaSection />
             <ReviewsGallery />
+            <FAQ />
           </motion.div>
         </div>
+        
        
-        
-        
         <div className="w-full px-8 sm:px-16 md:px-32 lg:px-16 bg-[#000816]">
           <motion.div
             initial="hidden"
@@ -560,21 +570,8 @@ export default function DigitalMarketingQuiz() {
            
           </motion.div>
         </div>
-        <div className="triangle">
-          <svg className="h-12 sm:h-16 lg:h-24" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z" className="shape-fill"></path>
-          </svg>
-        </div>
-        <div className="w-full px-8 sm:px-16 md:px-32 lg:px-16 mb-10 md:mb-16">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOptions}
-            variants={fadeUp}
-          >
-            <FAQ />
-          </motion.div>
-        </div>
+       
+       
       </div>
       <div>
         <Footer />
