@@ -6,39 +6,39 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "Hogyan különbözik a BellunaDigital egy hagyományos marketingügynökségtől?",
+    question: "Mennyire fájdalmas a kezelés?",
     answer:
-      "Mi nem csupán hirdetéseket kezelünk, hanem teljes körű páciensszerző rendszert biztosítunk: érdeklődőszerzés, utánkövetés, időpontfoglalás – mindezt eredménygaranciával.",
+      "A Lovja héjak felhelyezése szinte teljesen fájdalommentes, gyakran csak helyi érzéstelenítést igényel.",
   },
   { 
-    question: "Milyen pácienseket hoztok a rendelőmbe?",
+    question: "Mennyi ideig tart, míg elkészül a mosolyom?",
     answer:
-      "Kifejezetten magas értékű, plasztikai kezelések iránt érdeklődő pácienseket célzunk meg, akik hajlandóak fizetni a prémium szolgáltatásokért.",
+      "Általában 1 hét alatt elkészülnek a Lovja prémium héjak, a konzultációtól a végleges felhelyezésig.",
   },
   {
-    question: "Mennyi idő alatt hoztok eredményeket?",
+    question: "Mennyire tartósak a Lovja héjak?",
     answer:
-      "Az első eredmények általában már 1–2 héten belül jelentkeznek. Teljes kampányunk beindítása után havonta 5–15+ új páciensre lehet számítani.",
+      "A speciális török technológiának köszönhetően a Lovja héjak 10–15 évig is stabilak maradnak megfelelő ápolás mellett.",
   },
   {
-    question: "Hogyan tudjátok garantálni az eredményeket?",
+    question: "Meg fogják-e változtatni a fogaim természetes alakját?",
     answer:
-      "Több tucat sikeres kampány tapasztalatával dolgozunk. A kampányainkat folyamatosan optimalizáljuk, és csak akkor dolgozunk, ha biztosak vagyunk a sikerben – ezért merünk garanciát vállalni.",
+      "A Lovja héjak ultravékonyak, így minimális csiszolással illeszthetők, a fogak természetességét megőrizve.",
   },
   {
-    question: "Miért érdemes most jelentkezni?",
+    question: "Mennyire természetes a mosolyom a Lovja-val?",
     answer:
-      "Egy körzeten belül csak egy sebészettel dolgozunk együtt. Korlátozott számú praxisnak tudunk teljes fókuszú kampányt indítani.",
+      "A speciális mikrotextúra és egyedi színezés miatt a mosoly teljesen természetes, ragyogó és harmonikus lesz.",
   },
   {
-    question: "Új ügynökség vagytok?",
+    question: "Lehet-e egyszerre több fogra is felhelyezni a héjat?",
     answer:
-      "Nem. Bár a BellunaDigital új brandként indult, mögötte tapasztalt marketing szakemberek és kipróbált rendszerek állnak, akik már sok praxisnak hoztak mérhető növekedést.",
+      "Igen, akár a teljes mosolyt is átalakíthatjuk egyetlen kezelés során, teljesen személyre szabottan.",
   },
   {
-    question: "Mennyi időt kell ezzel foglalkoznom?",
+    question: "Mit tegyek, ha van régi koronám vagy héjam?",
     answer:
-      "Minimális időráfordítás szükséges Öntől. Mi kezeljük a hirdetéseket, a jelentkezők utánkövetését és az időpontok egyeztetését – Ön csak a kezelésekkel foglalkozik.",
+      "A meglévő fogászati munkák eltávolíthatók vagy integrálhatók – a Lovja csapata minden esetben személyre szabott megoldást kínál.",
   },
 ];
 
