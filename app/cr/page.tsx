@@ -3,7 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { easeOut } from 'framer-motion/dom';
-import Image from 'next/image';
+
 import LandingHeader from '@/components/cr/landingheader';
 import WhyLovjaSection from "@/components/cr/WhyLovjaSection";
 import FAQ from "@/components/cr/faq";
@@ -18,12 +18,25 @@ interface FormData {
   website: string;
   location: string;
   investmentIntent: string;
+
+  // ADD THESE:
+  currentTeethCondition: string[];  // multiple
+  dentalIssues: string;             // single
+  experience: string;               // single
+  desiredOutcome: string;           // single
+  biteCondition: string;            // single
+  missingTeeth: string;             // single
+  timeline: string;                 // single
+
   fullName: string;
   email: string;
   phone: string;
   position: string;
   acceptedPrivacy: boolean;
 }
+
+
+
 
 type QuizStep = {
   question: string;
@@ -54,6 +67,13 @@ export default function DigitalMarketingQuiz() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     marketingType: [],
+    currentTeethCondition: [], // <--- important for multi-select
+    dentalIssues: "",
+    experience: "",
+    desiredOutcome: "",
+    biteCondition: "",
+    missingTeeth: "",
+    timeline: "",
     averageRevenue: "",
     monthlySpend: "",
     treatments: "",
@@ -66,6 +86,8 @@ export default function DigitalMarketingQuiz() {
     position: "",
     acceptedPrivacy: false,
   });
+  
+  
   const [errors, setErrors] = useState<{[key: number]: string}>({});
 
   const topSectionRef = useRef<HTMLDivElement>(null);
@@ -73,60 +95,82 @@ export default function DigitalMarketingQuiz() {
 
   const quizSteps: QuizStep[] = [
     {
-      question: "Jelenleg milyen típusú digitális marketinget alkalmaznak?",
+      question: "Milyen állapotban vannak jelenleg a fogai? (Többet is jelölhet)",
       type: "multiple",
-      field: "marketingType",
+     
+      field: "currentTeethCondition",
       options: [
-        { value: "facebook", label: "META" },
-        { value: "google", label: "Google" },
-        { value: "seo", label: "SEO" },
-        { value: "other", label: "Egyéb" },
+        { value: "cracked", label: "Repedezett vagy törött fogak" },
+        { value: "previous_restorations", label: "Előző héjak, koronák" },
+        { value: "small_uneven", label: "Egyenetlen, apró fogak" },
+      { value: "discolored", label: "Elsárgult vagy elszíneződött fogak" },
       ],
     },
     {
-      question: "Mekkora volt az elmúlt 90 napban a sebészet átlagos havi bevétele?",
-      type: "input",
-      field: "averageRevenue",
-      inputProps: { type: "text", placeholder: "Írja be forintban..." },
+      question: "Van-e olyan fogászati problémája, ami befolyásolhatja a héjak készítését?",
+      type: "single",
+    
+      field: "dentalIssues",
+      options: [
+        { value: "gum_issues", label: "Ínyproblémák (pl. gyulladás)" },
+        { value: "periodontal", label: "Fogágybetegség" },
+        { value: "bruxism", label: "Fogcsikorgatás vagy erős harapási erő" },
+      { value: "none", label: "Nincs ilyen problémám" },
+    ],
     },
     {
-      question: "Mekkora a teljes, átlagos havi marketingköltségük?",
+      question: "Van már tapasztalata esztétikai fogászati kezelésekkel?",
       type: "single",
-      field: "monthlySpend",
+ 
+      field: "experience",
       options: [
-        { value: "100-200", label: "100-200 ezer Ft" },
-        { value: "300-500", label: "300-500 ezer Ft" },
-        { value: "600-1000", label: "600 ezer-1 millió Ft" },
-        { value: "1000-2000", label: "1-2 millió Ft" },
-        { value: "2000+", label: "2+ millió Ft" },
+        { value: "yes", label: "Igen, voltak korábbi héjak vagy koronák" },
+        { value: "no", label: "Nem, most gondolkodom először" },
       ],
     },
     {
-      question: "Milyen beavatkozásokat szeretnének hirdetni?",
-      type: "input",
-      field: "treatments",
-      inputProps: { type: "text", placeholder: "Pl. orrplasztika, hasplasztika, implantátum" },
-    },
-    {
-      question: "Sebészet weboldala?",
-      type: "input",
-      field: "website",
-      inputProps: { type: "url", placeholder: "https://..." },
-    },
-    {
-      question: "Hol található a sebészet?",
-      type: "input",
-      field: "location",
-      inputProps: { type: "text", placeholder: "Város" },
-    },
-    {
-      question:
-        "Csak akkor kérjen időpontot, ha nyitott arra, hogy a sebészet fejlesztésébe fektessen, valamint elégedett a szolgáltatásainkkal.",
+      question: "Milyen eredményt szeretne elérni a Lovja héjakkal?",
       type: "single",
-      field: "investmentIntent",
+
+      field: "desiredOutcome",
       options: [
-        { value: "ready", label: "Készen állok, ha látom az értéket." },
-        { value: "not_invest", label: "Nem tervezek befektetni." },
+        { value: "natural", label: "Természetes, harmonikus mosoly" },
+        { value: "hollywood", label: "Ragyogó, prémium “hollywoodi” mosoly" },
+        { value: "custom", label: "Személyre szabott, exkluzív mosoly" },
+      ],
+    },
+    {
+
+      question: "Milyen a jelenlegi harapása és rágása?",
+      type: "single",
+ 
+      field: "biteCondition",
+      options: [
+        { value: "normal", label: "Normális, nincs problémám" },
+        { value: "sometimes_uncomfortable", label: "Néha kellemetlenséget érzek" },
+        { value: "difficulty", label: "Rendszeres rágási vagy harapási nehézség" },
+      ],
+    },
+    {
+      question: "Van-e foghiánya vagy több fogat kellene pótolni?",
+      type: "single",
+    
+      field: "missingTeeth",
+      options: [
+        { value: "some_missing", label: "Egy vagy több fog hiányzik" },
+        { value: "none_missing", label: "Teljes foghiány nincs" },
+        { value: "dentures", label: "Kivehető protézist viselek" },
+      ],
+    },
+    {
+      question: "Mikor szeretné elkezdeni a konzultációt és a kezelést?",
+      type: "single",
+  
+      field: "timeline",
+      options: [
+        { value: "now", label: "Azonnal" },
+        { value: "1-2_months", label: "1–2 hónapon belül" },
+        { value: "3-6_months", label: "3–6 hónap múlva" },
       ],
     },
     {
@@ -135,24 +179,21 @@ export default function DigitalMarketingQuiz() {
     },
   ];
 
-  const iconMap: Record<string, string> = {
-  facebook:  'https://cdn-icons-png.flaticon.com/512/6033/6033716.png', // Meta logo
-  instagram: 'https://cdn-icons-png.flaticon.com/512/6033/6033716.png', // Meta logo
-  google:    'https://cdn-icons-png.flaticon.com/512/281/281764.png',  // Google logo
-  seo:       'https://cdn-icons-png.flaticon.com/512/3648/3648841.png', // SEO magnifying‑glass icon
-  other: 'https://cdn-icons-png.flaticon.com/512/5726/5726470.png'
-  };
+ 
 
   const validateStep = (step: number): boolean => {
     const stepData = quizSteps[step - 1];
     let isValid = true;
     let errorMessage = '';
 
-    if (stepData.type === "multiple" && stepData.field === "marketingType") {
-      if (formData.marketingType.length === 0) {
+    if (stepData.type === "multiple" && stepData.field) {
+      const value = formData[stepData.field];
+      if (!Array.isArray(value) || value.length === 0) {
         isValid = false;
-        errorMessage = 'Kérjük, válasszon legalább egy opciót';
+        errorMessage = "Kérjük, válasszon legalább egy opciót";
       }
+    
+    
     } else if (stepData.type === "single" || stepData.type === "multiple") {
       if (!formData[stepData.field!]) {
         isValid = false;
@@ -190,31 +231,40 @@ export default function DigitalMarketingQuiz() {
   const updateFormData = <K extends keyof FormData>(field: K, value: FormData[K]) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+  
+  type MultiSelectFields = 'marketingType' | 'currentTeethCondition';
 
- const handleSelection = (value: string) => {
-    const step = quizSteps[currentStep - 1];
-    if (step.type === "multiple" && step.field === "marketingType") {
-      const arr = [...formData.marketingType];
-      const index = arr.indexOf(value);
-      
-      if (index > -1) {
-        arr.splice(index, 1);
-      } else {
-        arr.push(value);
-      }
-      
-      updateFormData("marketingType", arr);
-    } else if (step.field) {
-      updateFormData(step.field, value);
-    }
+  const handleMultiSelect = (field: MultiSelectFields, value: string) => {
+    const arr = [...formData[field]]; // TypeScript knows this is string[]
+    const index = arr.indexOf(value);
+    if (index > -1) arr.splice(index, 1);
+    else arr.push(value);
+  
+    updateFormData(field, arr); // no 'any' needed
   };
+  
+
+
+  const handleSelection = (value: string) => {
+    const step = quizSteps[currentStep - 1];
+  
+    if (step.type === "multiple" && step.field) {
+      handleMultiSelect(step.field as MultiSelectFields, value);
+    }
+    
+  };
+  
+  
+  
+  
+  
 
   const renderNextButton = () => (
     <button
       onClick={handleNext}
       className="bg-yellow-400 text-black text-lg sm:text-xl font-bold w-full py-2 sm:py-3 rounded-xl hover:bg-yellow-500 transition-colors cursor-pointer btn-shadow"
     >
-      NEXT
+      Tovább
     </button>
   );
 
@@ -276,29 +326,24 @@ export default function DigitalMarketingQuiz() {
             <label
               key={opt.value}
               className={`flex items-center p-2 sm:p-3 rounded-xl cursor-pointer transition-all h-full min-h-[40px] border border-white/50 ${
-                formData.marketingType.includes(opt.value)
+                (formData[step.field!] as string[]).includes(opt.value)
+
+
                   ? 'bg-white/10 text-white font-bold'
                   : 'bg-black/25 text-white font-medium hover:bg-white/5'
               }`}
             >
-              <div className="w-6 h-6 mr-1 sm:mr-2 flex items-center justify-center">
-                {opt.value  && (
-                  <Image
-                    src={iconMap[opt.value]}
-                    alt={opt.label}
-                    width={0}
-                    height={0}
-                    className="w-5 h-5"
-                  />
-                )}
-              </div>
+              <div className="w-6 h-6 mr-1 sm:mr-2 flex items-center justify-center pointer-events-none"></div>
+
               <span className="text-xs sm:text-sm flex-1">
                 {opt.label}
               </span>
               <input
                 type="checkbox"
-                checked={formData.marketingType.includes(opt.value)}
+                checked={(formData[step.field!] as string[]).includes(opt.value)}
                 onChange={() => handleSelection(opt.value)}
+                
+                
                 className="hidden"
               />
             </label>
@@ -320,15 +365,16 @@ export default function DigitalMarketingQuiz() {
           <QuestionTitle />
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-2 max-w-md mx-auto mb-4 sm:mb-6">
-              {step.options?.map((opt) => (
-                <label
-                  key={opt.value}
-                  className={`flex items-center p-2 sm:p-3 rounded-xl cursor-pointer transition-all h-full min-h-[40px] border border-white/50 ${
-                    formData[step.field!] === opt.value
-                      ? 'bg-white/10 text-white font-bold'
-                      : 'bg-black/25 text-white font-medium hover:bg-white/5'
-                  }`}
-                >
+            {step.options?.map((opt) => (
+  <label
+    key={opt.value}
+    className={`flex items-center p-2 sm:p-3 rounded-xl cursor-pointer transition-all h-full min-h-[40px] border border-white/50 ${
+      formData.marketingType.includes(opt.value)
+        ? 'bg-white/10 text-white font-bold'
+        : 'bg-black/25 text-white font-medium hover:bg-white/5'
+    }`}
+  >
+
                   <span className="text-center text-xs sm:text-sm">
                     {opt.label}
                   </span>
@@ -387,13 +433,7 @@ export default function DigitalMarketingQuiz() {
               onChange={(e) => updateFormData("phone", e.target.value)}
               className="w-full p-2 sm:p-3 border border-white/50 rounded-xl mb-2 bg-transparent text-white placeholder:text-gray-300"
             />
-            <input
-              type="text"
-              placeholder="Pozíció a klinikán"
-              value={formData.position}
-              onChange={(e) => updateFormData("position", e.target.value)}
-              className="w-full p-2 sm:p-3 border border-white/50 rounded-xl mb-3 sm:mb-4 bg-transparent text-white placeholder:text-gray-300"
-            />
+           
             <label className="flex items-start space-x-2 mb-4 sm:mb-6">
               <input
                 required
@@ -479,7 +519,7 @@ export default function DigitalMarketingQuiz() {
       variants={fadeUp}
     >
       <p className="text-white font-medium text-sm sm:text-base md:text-lg mt-8">
-        🎁 BÓNUSZ #1 - Csak töltse ki az űrlapot, és hozzáférést kap egy 8 lépéses META útmutatóhoz!
+      🎁 BÓNUSZ #1 - Csak töltse ki az űrlapot, és kap egy ingyenes exkluzív mosolyátalakító elemzést / CBTC / szájhigiénia!
       </p>
     </motion.div>
 
@@ -491,22 +531,24 @@ export default function DigitalMarketingQuiz() {
         variants={fadeIn}
       >
    <motion.div
-  className="flex flex-col items-center text-center font-extrabold text-white leading-tight text-shadow-lg text-shadow-black/50"
+  className="flex flex-col items-center text-center font-extrabold text-white leading-tight"
   variants={fadeUp}
 >
-  <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl">
-    Szerezzen <span className="text-white">5-10 új</span>
+  <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
+                  [text-shadow:4px_4px_8px_black]">
+    Tökéletes <span className="text-white">mosoly</span>
   </div>
-  <div className="text-yellow-400 underline text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl">
-    plasztikai pácienst
+  <div className="text-yellow-400 underline text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
+                  [text-shadow:4px_4px_8px_black]">
+    csiszolás nélkül
   </div>
-  <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl">
-    <span className="italic">havonta</span>, teljesen
-  </div>
-  <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl">
-    kockázatmentesen!
+  
+  <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
+                  [text-shadow:4px_4px_8px_black]">
+    1 nap alatt!
   </div>
 </motion.div>
+
       </motion.div>
 
       <motion.div
@@ -531,19 +573,11 @@ export default function DigitalMarketingQuiz() {
       </motion.div>
     </div>
   </div>
-  <div className="w-[250%] md:w-[200%] h-32 wave backdrop-blur-0 block lg:hidden">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill"></path>
-    </svg>
-  </div>
+  
 </div>
 
 
-      <div className="w-[250%] md:w-[175%] xl:w-full wave backdrop-blur-0 hidden lg:block">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill"></path>
-        </svg>
-      </div>
+    
        
       <div className="flex flex-col items-center spacer bg-white layer3">
         <div className="w-full px-8 sm:px-16 md:px-32 lg:px-16 bg-[#000816] pb-8">

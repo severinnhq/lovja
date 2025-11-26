@@ -17,7 +17,7 @@ export default function WhyLovjaSection() {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-extrabold text-center mb-12"
         >
-          WHy <span className="text-yellow-400">elengedhetetlen</span> a Lovja?
+          Why is lovja <span className="text-yellow-400">essential</span>?
         </motion.h2>
 
         {/* Grid: 1 column <1024px, 2 columns ≥1024px */}
@@ -31,29 +31,27 @@ export default function WhyLovjaSection() {
             className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10 shadow-lg"
           >
             <h3 className="text-2xl font-bold text-yellow-400 mb-4">
-              Miért van szüksége a Lovjára?
+              Lovja
             </h3>
             <ul className="space-y-3 text-base text-white/90 leading-relaxed">
               {/* Desktop: 4 sentences */}
               <li className="hidden lg:block">
-                ✅ Mert az online térben ma a figyelemért folyik a harc — és a Lovja segít Önnek nyerni.
+                ✅ Natural micro-texture allows a brighter, longer-lasting whiteness, minimal drilling – your teeth stay intact.
+              </li>
+             
+              <li className="hidden lg:block">
+                ✅ Perfect 0.01 mm fit – no gaps or dark edges.
               </li>
               <li className="hidden lg:block">
-                ✅ Mert a páciensek 80%-a az interneten dönt, mielőtt bármit foglalna.
-              </li>
-              <li className="hidden lg:block">
-                ✅ Mert egy modern, adatvezérelt marketingrendszer nélkül a konkurencia viszi el a lehetőségeket.
-              </li>
-              <li className="hidden lg:block">
-                ✅ Mert a Lovja rendszere nem csak hirdet – <span className="font-semibold text-white">automatikusan konvertál</span>.
+                ✅ Longer lifespan – less prone to chipping or cracking.
               </li>
 
               {/* Mobile & Tablet: first 2 sentences */}
               <li className="block lg:hidden">
-                ✅ Mert az online térben ma a figyelemért folyik a harc — és a Lovja segít Önnek nyerni.
+                ✅ Natural micro-texture allows a brighter, longer-lasting whiteness, minimal drilling – your teeth stay intact.
               </li>
               <li className="block lg:hidden">
-                ✅ Mert a páciensek 80%-a az interneten dönt, mielőtt bármit foglalna.
+                ✅ Perfect 0.01 mm fit – no gaps or dark edges.
               </li>
             </ul>
           </motion.div>
@@ -67,29 +65,29 @@ export default function WhyLovjaSection() {
             className="bg-red-900/20 border border-red-600/30 rounded-2xl p-8 shadow-lg"
           >
             <h3 className="text-2xl font-bold text-red-400 mb-4">
-              Mi történik, ha nem lép időben?
+             Hagyományos héjak
             </h3>
             <ul className="space-y-3 text-base text-white/90 leading-relaxed">
               {/* Desktop: 4 sentences */}
               <li className="hidden lg:block">
-                ⚠️ A versenytársai hirdetései előzik meg az Önéit, így a páciensek őket választják.
+                ⚠️ Often require significant drilling, resulting in permanent loss of tooth structure.
               </li>
               <li className="hidden lg:block">
-                ⚠️ A hónapról hónapra növekvő hirdetési költségek mellett <span className="font-semibold text-white">csökkenő eredményekkel</span> kell számolnia.
+                ⚠️ Can discolor over time and appear artificial in shine.
               </li>
               <li className="hidden lg:block">
-                ⚠️ A klinika online jelenléte elavultnak hat, és a bizalomvesztés azonnali.
+                ⚠️ Inaccurate fit may cause micro-gaps and gum problems.
               </li>
               <li className="hidden lg:block">
-                ⚠️ Minden egyes elmaradt érdeklődő egy elveszített lehetőség — <span className="font-semibold text-yellow-400">amelyet valaki más nyer meg.</span>
+                ⚠️ Shorter lifespan, often requiring replacement or repairs.
               </li>
 
               {/* Mobile & Tablet: first 2 sentences */}
               <li className="block lg:hidden">
-                ⚠️ A versenytársai hirdetései előzik meg az Önéit, így a páciensek őket választják.
+                ⚠️ Often require significant drilling, resulting in permanent loss of tooth structure.
               </li>
               <li className="block lg:hidden">
-                ⚠️ A hónapról hónapra növekvő hirdetési költségek mellett <span className="font-semibold text-white">csökkenő eredményekkel</span> kell számolnia.
+                ⚠️ Can discolor over time and appear artificial in shine.
               </li>
             </ul>
           </motion.div>
@@ -103,18 +101,19 @@ export default function WhyLovjaSection() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-lg md:text-xl text-white/90 mb-6">
-            Ne várja meg, míg a konkurencia átveszi a pácienseit.  
-            <span className="block text-yellow-400 font-bold mt-1">
-              Tegye meg most az első lépést a Lovjával.
-            </span>
-          </p>
-          <a
-            href="#quiz"
-            className="inline-block bg-yellow-400 text-black font-bold py-3 px-8 rounded-xl hover:bg-yellow-500 transition-colors btn-shadow"
-          >
-            Kérem az ingyenes konzultációt →
-          </a>
+        <p className="text-lg md:text-xl text-white/90 mb-6">
+        Don’t settle for an average smile.
+  <span className="block text-yellow-400 font-bold mt-1">
+  Take the first step with Lovja premium veneers.
+  </span>
+</p>
+<a
+  href="#quiz"
+  className="inline-block bg-yellow-400 text-black font-bold py-3 px-8 rounded-xl hover:bg-yellow-500 transition-colors btn-shadow"
+>
+Request your free smile design →
+</a>
+
         </motion.div>
       </div>
     </section>

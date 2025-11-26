@@ -62,7 +62,7 @@ export default function LandingHeader() {
             className="text-white font-bold tracking-wider whitespace-nowrap text-center mx-auto"
             style={{ fontSize: 'clamp(0.5rem, 3vw, 1.5rem)' }}
           >
-            MOSOLY, AHOGY MÉG SOSEM LÁTTAD
+           SMILE LIKE YOU’VE NEVER SEEN BEFORE
           </h1>
 
         </div>
