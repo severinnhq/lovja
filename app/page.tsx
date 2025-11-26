@@ -35,7 +35,7 @@ interface FormData {
   acceptedPrivacy: boolean;
 }
 
-type MultiSelectFields = 'marketingType'; // add more if needed
+
 
 
 type QuizStep = {
