@@ -17,7 +17,7 @@ export default function WhyLovjaSection() {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-extrabold text-center mb-12"
         >
-          Miért <span className="text-yellow-400">elengedhetetlen</span> a Lovja?
+          Warum ist Lovja <span className="text-yellow-400">unverzichtbar</span>?
         </motion.h2>
 
         {/* Grid: 1 column <1024px, 2 columns ≥1024px */}
@@ -36,24 +36,24 @@ export default function WhyLovjaSection() {
             <ul className="space-y-3 text-base text-white/90 leading-relaxed">
               {/* Desktop: 4 sentences */}
               <li className="hidden lg:block">
-                ✅ Nincs fogcsiszolás vagy minimális beavatkozás – a fogak épek maradnak.
+                ✅ Kein Abschleifen oder nur minimale Eingriffe – die Zähne bleiben intakt.
               </li>
               <li className="hidden lg:block">
-                ✅ Természetesebb ragyogás és hosszabb távú fehérség a speciális mikrotextúra miatt.
+                ✅ Natürlichere Strahlkraft und langanhaltende Weißheit dank spezieller Mikrostruktur.
               </li>
               <li className="hidden lg:block">
-                ✅ Tökéletes, 0,01 mm-es illeszkedés, nincs hézag vagy szélsötétedés.
+                ✅ Perfekte Passung von 0,01 mm – keine Lücken oder dunklen Ränder.
               </li>
               <li className="hidden lg:block">
-                ✅ Hosszabb élettartam, kevésbé hajlamos repedésre vagy lepattogásra. 
+                ✅ Längere Lebensdauer – weniger anfällig für Absplitterungen oder Risse.
               </li>
 
               {/* Mobile & Tablet: first 2 sentences */}
               <li className="block lg:hidden">
-                ✅ Nincs fogcsiszolás vagy minimális beavatkozás – a fogak épek maradnak.
+                ✅ Kein Abschleifen oder nur minimale Eingriffe – die Zähne bleiben intakt.
               </li>
               <li className="block lg:hidden">
-                ✅ Természetesebb ragyogás és hosszabb távú fehérség a speciális mikrotextúra miatt.
+                ✅ Natürlichere Strahlkraft und langanhaltende Weißheit dank spezieller Mikrostruktur.
               </li>
             </ul>
           </motion.div>
@@ -67,29 +67,29 @@ export default function WhyLovjaSection() {
             className="bg-red-900/20 border border-red-600/30 rounded-2xl p-8 shadow-lg"
           >
             <h3 className="text-2xl font-bold text-red-400 mb-4">
-             Hagyományos héjak
+            Traditionelle Veneers
             </h3>
             <ul className="space-y-3 text-base text-white/90 leading-relaxed">
               {/* Desktop: 4 sentences */}
               <li className="hidden lg:block">
-                ⚠️ Gyakran jelentős csiszolást igényelnek, ami végleges foganyag-vesztéssel jár.
+                ⚠️ Oft wird starkes Abschleifen benötigt, was zu dauerhaftem Zahnsubstanzverlust führt.
               </li>
               <li className="hidden lg:block">
-                ⚠️ Idővel elszíneződhetnek és mesterséges fényűek lehetnek.
+                ⚠️ Mit der Zeit können sie sich verfärben und künstlich wirken.
               </li>
               <li className="hidden lg:block">
-                ⚠️ Pontatlanság esetén mikrohézagok és ínyproblémák alakulhatnak ki.
+                ⚠️ Ungenaue Passung kann Mikro-Lücken und Zahnfleischprobleme verursachen.
               </li>
               <li className="hidden lg:block">
-                ⚠️ Rövidebb élettartam, gyakori csere vagy javítás szükséges.
+                ⚠️ Kürzere Lebensdauer, häufige Ersatz- oder Reparaturmaßnahmen erforderlich.
               </li>
 
               {/* Mobile & Tablet: first 2 sentences */}
               <li className="block lg:hidden">
-                ⚠️ Gyakran jelentős csiszolást igényelnek, ami végleges foganyag-vesztéssel jár.
+                ⚠️ Oft wird starkes Abschleifen benötigt, was zu dauerhaftem Zahnsubstanzverlust führt.
               </li>
               <li className="block lg:hidden">
-                ⚠️ Idővel elszíneződhetnek és mesterséges fényűek lehetnek.
+                ⚠️ Mit der Zeit können sie sich verfärben und künstlich wirken.
               </li>
             </ul>
           </motion.div>
@@ -104,16 +104,16 @@ export default function WhyLovjaSection() {
           className="text-center mt-16"
         >
         <p className="text-lg md:text-xl text-white/90 mb-6">
-  Ne elégedjen meg a középszerű mosollyal.  
+        Geben Sie sich nicht mit einem durchschnittlichen Lächeln zufrieden.
   <span className="block text-yellow-400 font-bold mt-1">
-    Tegye meg az első lépést a Lovja prémium héjakkal.
+  Machen Sie den ersten Schritt mit Lovja Premium Veneers.
   </span>
 </p>
 <a
   href="#quiz"
   className="inline-block bg-yellow-400 text-black font-bold py-3 px-8 rounded-xl hover:bg-yellow-500 transition-colors btn-shadow"
 >
-  Kérem az ingyenes mosolytervezést →
+Kostenlose Smile-Planung anfordern →
 </a>
 
         </motion.div>

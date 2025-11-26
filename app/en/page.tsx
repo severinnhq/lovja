@@ -558,7 +558,7 @@ export default function DigitalMarketingQuiz() {
         variants={fadeUp}
       >
         <p className="text-white/90 font-medium text-xs sm:text-sm min-[560px]:text-base md:text-lg">
-          🎁 BÓNUSZ #1 - Csak töltse ki az űrlapot, és hozzáférést kap egy 8 lépéses meta útmutatóhoz!
+        🎁 BONUS #1 – Simply fill out the form and receive a free exclusive smile transformation analysis / CBCT scan / oral hygiene assessment!
         </p>
       </motion.div>
 
