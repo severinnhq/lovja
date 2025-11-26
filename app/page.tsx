@@ -229,29 +229,29 @@ export default function DigitalMarketingQuiz() {
   const updateFormData = <K extends keyof FormData>(field: K, value: FormData[K]) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+  
+  type MultiSelectFields = 'marketingType' | 'currentTeethCondition';
+
+const handleMultiSelect = (field: MultiSelectFields, value: string) => {
+  const arr = [...formData[field]]; // TypeScript knows this is string[]
+  const index = arr.indexOf(value);
+  if (index > -1) arr.splice(index, 1);
+  else arr.push(value);
+
+  updateFormData(field, arr);
+};
+
 
   const handleSelection = (value: string) => {
     const step = quizSteps[currentStep - 1];
-  
-    if (step.type === "multiple" && step.field) {
-      // Get current array (default empty)
-      const arr: string[] = Array.isArray(formData[step.field])
-        ? [...(formData[step.field] as string[])]
-        : [];
-  
-      const index = arr.indexOf(value);
-  
-      if (index > -1) {
-        arr.splice(index, 1); // Remove if already selected
-      } else {
-        arr.push(value); // Add if not selected
-      }
-  
-      updateFormData(step.field, arr as any);
+    if (step.type === "multiple" && step.field && (step.field === 'marketingType' || step.field === 'currentTeethCondition')) {
+      handleMultiSelect(step.field, value);
     } else if (step.field) {
       updateFormData(step.field, value as any);
     }
   };
+  
+  
   
   
 
