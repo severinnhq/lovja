@@ -252,7 +252,8 @@ export default function DigitalMarketingQuiz() {
       handleMultiSelect(step.field as MultiSelectFields, value);
     } 
     else if (step.type === "single" && step.field) {
-      updateFormData(step.field, value as any);
+      updateFormData(step.field as keyof FormData, value as string);
+
     }
   };
   
