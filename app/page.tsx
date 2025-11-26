@@ -3,7 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { easeOut } from 'framer-motion/dom';
-import Image from 'next/image';
+
 import LandingHeader from '@/components/hu/landingheader';
 import WhyLovjaSection from "@/components/hu/WhyLovjaSection";
 import FAQ from "@/components/hu/faq";
@@ -177,13 +177,7 @@ export default function DigitalMarketingQuiz() {
     },
   ];
 
-  const iconMap: Record<string, string> = {
-  facebook:  'https://cdn-icons-png.flaticon.com/512/6033/6033716.png', // Meta logo
-  instagram: 'https://cdn-icons-png.flaticon.com/512/6033/6033716.png', // Meta logo
-  google:    'https://cdn-icons-png.flaticon.com/512/281/281764.png',  // Google logo
-  seo:       'https://cdn-icons-png.flaticon.com/512/3648/3648841.png', // SEO magnifying‑glass icon
-  other: 'https://cdn-icons-png.flaticon.com/512/5726/5726470.png'
-  };
+ 
 
   const validateStep = (step: number): boolean => {
     const stepData = quizSteps[step - 1];
