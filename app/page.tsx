@@ -35,6 +35,8 @@ interface FormData {
   acceptedPrivacy: boolean;
 }
 
+type MultiSelectFields = 'marketingType'; // add more if needed
+
 
 type QuizStep = {
   question: string;
@@ -232,24 +234,32 @@ export default function DigitalMarketingQuiz() {
   
   type MultiSelectFields = 'marketingType' | 'currentTeethCondition';
 
-const handleMultiSelect = (field: MultiSelectFields, value: string) => {
-  const arr = [...formData[field]]; // TypeScript knows this is string[]
-  const index = arr.indexOf(value);
-  if (index > -1) arr.splice(index, 1);
-  else arr.push(value);
-
-  updateFormData(field, arr);
-};
+  const handleMultiSelect = (field: MultiSelectFields, value: string) => {
+    const arr = [...formData[field]]; // TypeScript knows this is string[]
+    const index = arr.indexOf(value);
+    if (index > -1) arr.splice(index, 1);
+    else arr.push(value);
+  
+    updateFormData(field, arr); // no 'any' needed
+  };
+  
 
 
   const handleSelection = (value: string) => {
     const step = quizSteps[currentStep - 1];
-    if (step.type === "multiple" && step.field && (step.field === 'marketingType' || step.field === 'currentTeethCondition')) {
-      handleMultiSelect(step.field, value);
+  
+    if (step.type === "multiple" && step.field) {
+      if (step.field === 'marketingType') {
+        handleMultiSelect(step.field, value);
+      } else {
+        console.warn("Unknown multiple-select field:", step.field);
+      }
     } else if (step.field) {
-      updateFormData(step.field, value as any);
+      // single-select fields are strings
+      updateFormData(step.field, value as unknown as FormData[typeof step.field]);
     }
   };
+  
   
   
   
