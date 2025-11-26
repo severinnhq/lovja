@@ -250,9 +250,12 @@ export default function DigitalMarketingQuiz() {
   
     if (step.type === "multiple" && step.field) {
       handleMultiSelect(step.field as MultiSelectFields, value);
+    } 
+    else if (step.type === "single" && step.field) {
+      updateFormData(step.field, value as any);
     }
-    
   };
+  
   
   
   
@@ -369,7 +372,8 @@ export default function DigitalMarketingQuiz() {
   <label
     key={opt.value}
     className={`flex items-center p-2 sm:p-3 rounded-xl cursor-pointer transition-all h-full min-h-[40px] border border-white/50 ${
-      formData.marketingType.includes(opt.value)
+      formData[step.field!] === opt.value
+
         ? 'bg-white/10 text-white font-bold'
         : 'bg-black/25 text-white font-medium hover:bg-white/5'
     }`}
@@ -519,7 +523,7 @@ export default function DigitalMarketingQuiz() {
       variants={fadeUp}
     >
       <p className="text-white font-medium text-sm sm:text-base md:text-lg mt-8">
-      🎁 BÓNUSZ #1 - Csak töltse ki az űrlapot, és kap egy ingyenes exkluzív mosolyátalakító elemzést / CBTC / szájhigiénia!
+      🎁 BONUS #1 – Completează formularul și primește gratuit o analiză exclusivă pentru transformarea zâmbetului / CBCT / igienă orală!
       </p>
     </motion.div>
 
@@ -536,16 +540,16 @@ export default function DigitalMarketingQuiz() {
 >
   <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
                   [text-shadow:4px_4px_8px_black]">
-    Tökéletes <span className="text-white">mosoly</span>
+    Zâmbet <span className="text-white">perfect</span>
   </div>
   <div className="text-yellow-400 underline text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
                   [text-shadow:4px_4px_8px_black]">
-    csiszolás nélkül
+    fără șlefuire
   </div>
   
   <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
                   [text-shadow:4px_4px_8px_black]">
-    1 nap alatt!
+    în doar 1 zi!
   </div>
 </motion.div>
 
@@ -558,7 +562,7 @@ export default function DigitalMarketingQuiz() {
         variants={fadeUp}
       >
         <p className="text-white/90 font-medium text-xs sm:text-sm min-[560px]:text-base md:text-lg">
-          🎁 BÓNUSZ #1 - Csak töltse ki az űrlapot, és hozzáférést kap egy 8 lépéses meta útmutatóhoz!
+        🎁 BONUS #1 – Completează formularul și primește gratuit o analiză exclusivă pentru transformarea zâmbetului / CBCT / igienă orală!
         </p>
       </motion.div>
 

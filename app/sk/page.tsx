@@ -250,9 +250,12 @@ export default function DigitalMarketingQuiz() {
   
     if (step.type === "multiple" && step.field) {
       handleMultiSelect(step.field as MultiSelectFields, value);
+    } 
+    else if (step.type === "single" && step.field) {
+      updateFormData(step.field, value as any);
     }
-    
   };
+  
   
   
   
@@ -369,7 +372,8 @@ export default function DigitalMarketingQuiz() {
   <label
     key={opt.value}
     className={`flex items-center p-2 sm:p-3 rounded-xl cursor-pointer transition-all h-full min-h-[40px] border border-white/50 ${
-      formData.marketingType.includes(opt.value)
+      formData[step.field!] === opt.value
+
         ? 'bg-white/10 text-white font-bold'
         : 'bg-black/25 text-white font-medium hover:bg-white/5'
     }`}
