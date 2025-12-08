@@ -9,7 +9,7 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Lovja | Mosoly, ahogy még sosem láttad",
+  title: "Lovja | Mosoly, ahogy még sosem látta",
   icons: {
     // Standard favicons (browsers auto-select by size)
     icon: [
