@@ -541,16 +541,16 @@ export default function DigitalMarketingQuiz() {
 >
   <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
                   [text-shadow:4px_4px_8px_black]">
-    Tökéletes <span className="text-white">mosoly</span>
+    Hófehér <span className="text-white">mosoly</span>
   </div>
   <div className="text-yellow-400 underline text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
                   [text-shadow:4px_4px_8px_black]">
-    csiszolás nélkül
+    személyre szabva
   </div>
   
   <div className="text-3xl min-[360px]:text-4xl xl:text-5xl 2xl:text-6xl 
                   [text-shadow:4px_4px_8px_black]">
-    1 nap alatt!
+    gyémántcsillogással!
   </div>
 </motion.div>
 

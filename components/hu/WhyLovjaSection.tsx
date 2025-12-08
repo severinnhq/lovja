@@ -35,11 +35,9 @@ export default function WhyLovjaSection() {
             </h3>
             <ul className="space-y-3 text-base text-white/90 leading-relaxed">
               {/* Desktop: 4 sentences */}
+              
               <li className="hidden lg:block">
-                ✅ Nincs fogcsiszolás vagy minimális beavatkozás – a fogak épek maradnak.
-              </li>
-              <li className="hidden lg:block">
-                ✅ Természetesebb ragyogás és hosszabb távú fehérség a speciális mikrotextúra miatt.
+                ✅ Természetesebb ragyogás és hosszabb távú fehérség a ... miatt.
               </li>
               <li className="hidden lg:block">
                 ✅ Tökéletes, 0,01 mm-es illeszkedés, nincs hézag vagy szélsötétedés.
@@ -49,9 +47,7 @@ export default function WhyLovjaSection() {
               </li>
 
               {/* Mobile & Tablet: first 2 sentences */}
-              <li className="block lg:hidden">
-                ✅ Nincs fogcsiszolás vagy minimális beavatkozás – a fogak épek maradnak.
-              </li>
+             
               <li className="block lg:hidden">
                 ✅ Természetesebb ragyogás és hosszabb távú fehérség a speciális mikrotextúra miatt.
               </li>
@@ -72,24 +68,24 @@ export default function WhyLovjaSection() {
             <ul className="space-y-3 text-base text-white/90 leading-relaxed">
               {/* Desktop: 4 sentences */}
               <li className="hidden lg:block">
-                ⚠️ Gyakran jelentős csiszolást igényelnek, ami végleges foganyag-vesztéssel jár.
+                ⚠️
               </li>
               <li className="hidden lg:block">
-                ⚠️ Idővel elszíneződhetnek és mesterséges fényűek lehetnek.
+                ⚠️ 
               </li>
               <li className="hidden lg:block">
-                ⚠️ Pontatlanság esetén mikrohézagok és ínyproblémák alakulhatnak ki.
+                ⚠️
               </li>
               <li className="hidden lg:block">
-                ⚠️ Rövidebb élettartam, gyakori csere vagy javítás szükséges.
+                ⚠️
               </li>
 
               {/* Mobile & Tablet: first 2 sentences */}
               <li className="block lg:hidden">
-                ⚠️ Gyakran jelentős csiszolást igényelnek, ami végleges foganyag-vesztéssel jár.
+                ⚠️ 
               </li>
               <li className="block lg:hidden">
-                ⚠️ Idővel elszíneződhetnek és mesterséges fényűek lehetnek.
+                ⚠️
               </li>
             </ul>
           </motion.div>
@@ -110,7 +106,7 @@ export default function WhyLovjaSection() {
   </span>
 </p>
 <a
-  href="#quiz"
+  href=""
   className="inline-block bg-yellow-400 text-black font-bold py-3 px-8 rounded-xl hover:bg-yellow-500 transition-colors btn-shadow"
 >
   Kérem az ingyenes mosolytervezést →
