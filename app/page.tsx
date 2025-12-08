@@ -524,7 +524,7 @@ export default function DigitalMarketingQuiz() {
       variants={fadeUp}
     >
       <p className="text-white font-medium text-sm sm:text-base md:text-lg mt-8">
-      🎁 BÓNUSZ #1 - Csak töltse ki az űrlapot, és kap egy ingyenes exkluzív mosolyátalakító elemzést / CBTC / szájhigiénia!
+      🎁 BÓNUSZ #1 - Ingyenes mosolytervezés, bármennyi Lovja fog rendelése esetén!
       </p>
     </motion.div>
 
@@ -563,7 +563,7 @@ export default function DigitalMarketingQuiz() {
         variants={fadeUp}
       >
         <p className="text-white/90 font-medium text-xs sm:text-sm min-[560px]:text-base md:text-lg">
-          🎁 BÓNUSZ #1 - Csak töltse ki az űrlapot, és hozzáférést kap egy 8 lépéses meta útmutatóhoz!
+          🎁 BÓNUSZ #1 - Ingyenes mosolytervezés, bármennyi Lovja fog rendelése esetén!
         </p>
       </motion.div>
 
